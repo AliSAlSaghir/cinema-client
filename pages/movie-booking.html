@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Movie - CinemaHub</title>
+    <link rel="stylesheet" href="/styles/globals.css" />
+    <link rel="stylesheet" href="/styles/movie-booking.css" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/index.html" class="logo">🎬 CinemaHub</a>
+      <a href="/pages/movies.html" class="btn">← Back to Movies</a>
+    </header>
+
+    <main class="booking-container" id="booking-container">
+      <div class="section">
+        <h2>Select Your Seats</h2>
+        <div id="seat-map" class="seat-map">
+          <!-- Seat grid will be rendered here -->
+        </div>
+        -->
+      </div>
+
+      <div class="section">
+        <h2>Snacks</h2>
+        <div id="snacks-list" class="snacks-grid">
+          <!-- Snacks will load here -->
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Coupon Code</h2>
+        <input
+          type="text"
+          id="coupon-code"
+          placeholder="Enter coupon code..."
+        />
+      </div>
+
+      <div class="section">
+        <h2>Payment Method</h2>
+        <select id="payment-method">
+          <option value="online">Online</option>
+          <option value="on_site">Pay on Site</option>
+        </select>
+      </div>
+
+      <div class="section">
+        <h2>Total: <span id="total-price">$0.00</span></h2>
+        <button id="submit-booking" class="btn primary">Confirm Booking</button>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/axios.js"></script>
+    <script src="/scripts/movie-booking.js"></script>
+  </body>
+</html>
