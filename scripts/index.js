@@ -1,5 +1,6 @@
 const authButtonsEl = document.getElementById("auth-buttons");
 const userId = localStorage.getItem("user_id");
+const searchInput = document.querySelector(".search-input");
 
 async function renderAuthButtons() {
   if (userId) {
@@ -61,6 +62,17 @@ async function loadNowShowing() {
     console.error("Failed to load movies:", err);
   }
 }
+
+searchInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    const title = searchInput.value.trim();
+    if (title) {
+      window.location.href = `/pages/movies.html?title=${encodeURIComponent(
+        title
+      )}`;
+    }
+  }
+});
 
 loadNowShowing();
 

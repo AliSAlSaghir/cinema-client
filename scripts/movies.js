@@ -1,41 +1,40 @@
+const searchInput = document.getElementById("search");
+
 async function loadMovies() {
   const container = document.getElementById("movies-list");
+  container.innerHTML = "<p>Loading movies...</p>";
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const titleFilter = urlParams.get("title");
 
   try {
-    const res = await api.get("/get_movies.php");
+    const endpoint = titleFilter
+      ? `/get_movies.php?title=${encodeURIComponent(titleFilter)}`
+      : `/get_movies.php`;
+
+    const res = await api.get(endpoint);
     const movies = res.data.movies;
 
     if (!movies.length) {
-      container.innerHTML = "<p>No movies available.</p>";
+      container.innerHTML = "<p>No movies found.</p>";
       return;
     }
 
+    container.innerHTML = "";
+
     movies.forEach(movie => {
       const genres = movie.genres.map(g => g.name).join(", ");
-      const showtimesHTML = movie.showtimes.length
-        ? movie.showtimes
-            .map(st => {
-              return `<a class="showtime-link" href="/pages/movie-booking.html?showtime_id=${
-                st.id
-              }">
-              ${st.show_date} @ ${st.show_time.slice(0, 5)}
-            </a>`;
-            })
-            .join("")
-        : '<span style="color:#888">No showtimes</span>';
-
       const movieEl = document.createElement("a");
       movieEl.className = "movie-card";
       movieEl.href = `/pages/movie.html?id=${movie.id}`;
       movieEl.innerHTML = `
-          <img src="http://localhost/cinema-server${movie.poster}" alt="${movie.title}" class="movie-poster" />
-          <div class="movie-info">
-            <div class="movie-title">${movie.title}</div>
-            <div class="movie-genres">${genres}</div>
-            <div class="movie-description">${movie.description}</div>
-          </div>
-        `;
-
+        <img src="http://localhost/cinema-server${movie.poster}" alt="${movie.title}" class="movie-poster" />
+        <div class="movie-info">
+          <div class="movie-title">${movie.title}</div>
+          <div class="movie-genres">${genres}</div>
+          <div class="movie-description">${movie.description}</div>
+        </div>
+      `;
       container.appendChild(movieEl);
     });
   } catch (err) {
@@ -62,6 +61,15 @@ async function loadUserProfile() {
     console.error("Failed to load user profile picture:", err);
   }
 }
+
+searchInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    const title = searchInput.value.trim();
+    window.location.href = `/pages/movies.html?title=${encodeURIComponent(
+      title
+    )}`;
+  }
+});
 
 loadUserProfile();
 
