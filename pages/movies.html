@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies - Ali Cinema</title>
+    <link rel="stylesheet" href="/styles/globals.css" />
+    <link rel="stylesheet" href="/styles/movies.css" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/index.html" class="logo">🎬 CinemaHub</a>
+
+      <div class="nav-actions">
+        <input type="text" id="search" placeholder="Search movies..." />
+        <a
+          href="/pages/profile.html"
+          class="profile-avatar"
+          id="profile-avatar"
+        >
+          <img src="/assets/default-avatar.jpeg" alt="Profile" />
+        </a>
+      </div>
+    </header>
+
+    <main class="movies-list" id="movies-list">
+      <!-- Movies will be injected here -->
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/axios.js"></script>
+    <script src="/scripts/movies.js"></script>
+  </body>
+</html>
