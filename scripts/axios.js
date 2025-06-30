@@ -1,6 +1,8 @@
-const api = axios.create({
-  baseURL: "http://localhost/cinema_server/controllers",
+axios.create({
+  baseURL: "http://localhost/cinema-server/controllers",
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
+    Accept: "application/json",
   },
 });

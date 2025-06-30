@@ -5,15 +5,16 @@ async function renderAuthButtons() {
   if (userId) {
     try {
       const res = await axios.get(
-        `http://localhost/cinema_server/controllers/get_user.php?id=${userId}`
+        `http://localhost/cinema-server/controllers/get_user.php?id=${userId}`
       );
       const user = res.data.user;
-      const profilePicUrl =
-        user.profile_picture || "/assets/default-avatar.png";
+      const profilePicUrl = user.profile_picture
+        ? `http://localhost/cinema-server${user.profile_picture}`
+        : "http://localhost/cinema-server/uploads/profile_pictures/default-avatar.jpeg";
 
       authButtonsEl.innerHTML = `
         <a href="/pages/profile.html" class="profile-link">
-          <img src="http://localhost/cinema_server${profilePicUrl}" alt="Profile" class="avatar" />
+          <img src="${profilePicUrl}" alt="Profile" class="avatar" />
         </a>
         <button class="btn btn-outline" id="logout-btn">Logout</button>
       `;
@@ -41,7 +42,7 @@ function showGuestButtons() {
 async function loadNowShowing() {
   try {
     const res = await axios.get(
-      "http://localhost/cinema_server/controllers/get_movies.php"
+      "http://localhost/cinema-server/controllers/get_movies.php"
     );
     const movies = res.data.movies.slice(0, 4); // Show only 4
 
@@ -50,7 +51,7 @@ async function loadNowShowing() {
       .map(
         movie => `
       <a href="/pages/movie.html?id=${movie.id}" class="movie-card">
-        <img src="http://localhost/cinema_server${movie.poster}" alt="${movie.title}" />
+        <img src="http://localhost/cinema-server${movie.poster}" alt="${movie.title}" />
         <h4>${movie.title}</h4>
       </a>
     `
