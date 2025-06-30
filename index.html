@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CinemaHub</title>
+    <link rel="stylesheet" href="/styles/globals.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/index.html" class="logo">🎬 CinemaHub</a>
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Search movies..."
+          class="search-input"
+        />
+      </div>
+      <div class="auth-buttons" id="auth-buttons"></div>
+    </header>
+
+    <main class="landing">
+      <section class="hero">
+        <h1>Welcome to CinemaHub 🎬</h1>
+        <p>Discover, book, and enjoy the latest movies with ease.</p>
+        <a href="/pages/movies.html" class="btn btn-primary">Browse Movies</a>
+      </section>
+
+      <section class="now-showing">
+        <h2>Now Showing</h2>
+        <div class="movie-grid" id="now-showing-movies"></div>
+      </section>
+
+      <section class="features">
+        <h2>Why Choose CinemaHub?</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>🎟️ Easy Booking</h3>
+            <p>Reserve your seats and snacks in seconds.</p>
+          </div>
+          <div class="feature-card">
+            <h3>📱 Mobile Friendly</h3>
+            <p>Book on any device, anytime, anywhere.</p>
+          </div>
+          <div class="feature-card">
+            <h3>💳 Secure Payments</h3>
+            <p>Choose between online payment or pay on site.</p>
+          </div>
+          <div class="feature-card">
+            <h3>🍿 Snack Pre-Orders</h3>
+            <p>Get your snacks ready before the movie starts.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>&copy; 2025 CinemaHub. All rights reserved.</p>
+      </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/axios.js"></script>
+    <script src="/scripts/index.js"></script>
+  </body>
+</html>
