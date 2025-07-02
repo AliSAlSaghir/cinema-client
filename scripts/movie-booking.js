@@ -42,7 +42,6 @@ async function loadSeats() {
       seatRows[row].push(seat);
     });
 
-    // Render rows
     Object.keys(seatRows)
       .sort()
       .forEach(row => {
@@ -65,7 +64,6 @@ async function loadSeats() {
         seatMapEl.appendChild(rowDiv);
       });
 
-    // Optional: Add legend
     const legend = document.createElement("div");
     legend.className = "seat-legend";
     legend.innerHTML = `

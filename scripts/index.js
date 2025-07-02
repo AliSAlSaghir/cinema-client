@@ -26,7 +26,7 @@ async function renderAuthButtons() {
       });
     } catch (err) {
       console.error("Failed to fetch user:", err);
-      showGuestButtons(); // fallback to login/register if user fetch fails
+      showGuestButtons();
     }
   } else {
     showGuestButtons();
