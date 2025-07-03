@@ -1,0 +1,102 @@
+.profile-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: #141414;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.05);
+  color: #fff;
+}
+
+.profile-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #e50914;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  color: #bbb;
+  font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="password"],
+.form-group input[type="file"] {
+  background-color: #222;
+  border: 1px solid #333;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.form-group input[type="file"] {
+  color: #aaa;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #e50914;
+}
+
+#profile-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #e50914;
+  margin-bottom: 0.8rem;
+  align-self: start;
+}
+
+button[type="submit"] {
+  background-color: #e50914;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff1a1a;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.logout-btn {
+  background-color: #444;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #666;
+}

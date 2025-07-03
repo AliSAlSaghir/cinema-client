@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel | CinemaHub</title>
+    <link rel="stylesheet" href="/styles/globals.css" />
+    <link rel="stylesheet" href="/styles/admin.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/index.html" class="logo">🎬 CinemaHub Admin</a>
+    </header>
+
+    <main class="admin-panel">
+      <h1>Admin Panel</h1>
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>Create Auditorium</h3>
+          <form id="auditorium-form">
+            <label for="aud-name">Name</label>
+            <input type="text" id="aud-name" required />
+
+            <label for="aud-rows">Seat Rows</label>
+            <input type="number" id="aud-rows" min="1" required />
+
+            <label for="aud-cols">Seats Per Row</label>
+            <input type="number" id="aud-cols" min="1" required />
+
+            <button type="submit" class="btn">Create</button>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <h3>Create Coupon</h3>
+          <form id="coupon-form">
+            <label for="coupon-code">Code</label>
+            <input type="text" id="coupon-code" required />
+
+            <label for="coupon-discount">Discount Percentage</label>
+            <input
+              type="number"
+              id="coupon-discount"
+              min="1"
+              max="100"
+              required
+            />
+
+            <label for="coupon-expiry">Expires At</label>
+            <input type="date" id="coupon-expiry" />
+
+            <label for="coupon-active">
+              <input type="checkbox" id="coupon-active" checked />
+              Active
+            </label>
+
+            <button type="submit" class="btn">Create</button>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <h3>Create Genre</h3>
+          <form id="genre-form">
+            <label for="genre-name">Name</label>
+            <input type="text" id="genre-name" required />
+
+            <button type="submit" class="btn">Create</button>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <h3>Create Movie</h3>
+          <form id="movie-form" enctype="multipart/form-data">
+            <label for="movie-title">
+              Title <span class="required">*</span>
+            </label>
+            <input type="text" id="movie-title" name="title" required />
+
+            <label for="movie-description">Description</label>
+            <textarea
+              id="movie-description"
+              name="description"
+              rows="3"
+            ></textarea>
+
+            <label for="movie-release-date">Release Date</label>
+            <input type="date" id="movie-release-date" name="release_date" />
+
+            <label for="movie-duration">Duration (minutes)</label>
+            <input
+              type="number"
+              id="movie-duration"
+              name="duration_minutes"
+              min="1"
+            />
+
+            <label for="movie-rating">Rating</label>
+            <input
+              type="text"
+              id="movie-rating"
+              name="rating"
+              placeholder="e.g. PG-13"
+            />
+
+            <label for="movie-poster">
+              Poster Image <span class="required">*</span>
+            </label>
+            <input
+              type="file"
+              id="movie-poster"
+              name="poster"
+              accept="image/*"
+              required
+            />
+
+            <label for="movie-genres">
+              Genres <span class="required">*</span>
+            </label>
+            <select
+              id="movie-genres"
+              name="genre_ids"
+              multiple
+              required
+            ></select>
+
+            <button type="submit" class="btn">Create</button>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <h3>Create Showtime</h3>
+          <form id="showtime-form">
+            <label for="showtime-movie">
+              Movie <span class="required">*</span>
+            </label>
+            <select id="showtime-movie" name="movie_id" required></select>
+
+            <label for="showtime-auditorium">
+              Auditorium <span class="required">*</span>
+            </label>
+            <select
+              id="showtime-auditorium"
+              name="auditorium_id"
+              required
+            ></select>
+
+            <label for="showtime-date">
+              Show Date <span class="required">*</span>
+            </label>
+            <input type="date" id="showtime-date" name="show_date" required />
+
+            <label for="showtime-time">
+              Show Time <span class="required">*</span>
+            </label>
+            <input type="time" id="showtime-time" name="show_time" required />
+
+            <button type="submit" class="btn">Create</button>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <h3>Create Snack</h3>
+          <form id="snack-form" enctype="multipart/form-data">
+            <label for="snack-name">
+              Name <span class="required">*</span>
+            </label>
+            <input type="text" id="snack-name" name="name" required />
+
+            <label for="snack-price">
+              Price ($) <span class="required">*</span>
+            </label>
+            <input
+              type="number"
+              id="snack-price"
+              name="price"
+              min="0"
+              step="0.01"
+              required
+            />
+
+            <label for="snack-image">
+              Image <span class="required">*</span>
+            </label>
+            <input
+              type="file"
+              id="snack-image"
+              name="image"
+              accept="image/*"
+              required
+            />
+
+            <label>
+              <input
+                type="checkbox"
+                id="snack-available"
+                name="is_available"
+                checked
+              />
+              Available
+            </label>
+
+            <button type="submit" class="btn">Create</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/axios.js"></script>
+    <script src="/scripts/admin.js"></script>
+  </body>
+</html>

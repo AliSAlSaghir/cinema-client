@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - CinemaHub</title>
+    <link rel="stylesheet" href="/styles/globals.css" />
+    <link rel="stylesheet" href="/styles/profile.css" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="/index.html" class="logo">🎬 CinemaHub</a>
+      <div class="nav-actions">
+        <a href="/pages/movies.html" class="btn">← Back to Movies</a>
+        <button class="btn logout-btn" onclick="logoutUser()">Logout</button>
+      </div>
+    </header>
+
+    <main class="profile-container">
+      <h2>Edit Profile</h2>
+      <form id="profile-form" enctype="multipart/form-data">
+        <div class="form-group">
+          <label>Profile Picture</label>
+          <img
+            id="profile-preview"
+            src="/assets/default-avatar.png"
+            alt="Profile"
+          />
+          <input type="file" name="profile_picture" />
+        </div>
+
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" />
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="text" name="phone_number" />
+        </div>
+
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input type="date" name="date_of_birth" />
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Day</label>
+          <input type="text" name="preferred_day" />
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <input type="time" name="preferred_time" />
+        </div>
+
+        <div class="form-group">
+          <label>Preferred Payment</label>
+          <input type="text" name="preferred_payment_method" />
+        </div>
+
+        <div class="form-group">
+          <label>Communication Preference</label>
+          <input type="text" name="communication_preference" />
+        </div>
+
+        <div class="form-group">
+          <label>Membership</label>
+          <input type="text" name="membership" />
+        </div>
+
+        <div class="form-group">
+          <label>National ID Image</label>
+          <input type="file" name="national_id_image" />
+        </div>
+
+        <button type="submit">Update Profile</button>
+      </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/axios.js"></script>
+    <script src="/scripts/profile.js"></script>
+  </body>
+</html>

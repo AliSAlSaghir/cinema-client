@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - CinemaHub</title>
+    <link rel="stylesheet" href="/styles/globals.css" />
+    <link rel="stylesheet" href="/styles/login.css" />
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  </head>
+  <body>
+    <main class="login-container">
+      <form id="login-form" class="login-form">
+        <h2>Login to CinemaHub</h2>
+
+        <label for="email">Email or Phone</label>
+        <input
+          type="text"
+          id="email"
+          placeholder="Enter your email or phone"
+          required
+        />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          required
+        />
+
+        <button type="submit" class="btn">Login</button>
+
+        <p class="redirect">
+          Don't have an account?
+          <a href="/pages/register.html">Register here</a>
+        </p>
+      </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/axios.js"></script>
+    <script src="/scripts/login.js"></script>
+  </body>
+</html>
