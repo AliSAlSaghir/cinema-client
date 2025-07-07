@@ -5,13 +5,11 @@ const searchInput = document.querySelector(".search-input");
 async function renderAuthButtons() {
   if (userId) {
     try {
-      const res = await axios.get(
-        `http://localhost/cinema-server/controllers/get_user.php?id=${userId}`
-      );
+      const res = await api.get(`/get_users?id=${userId}`);
       const user = res.data.user;
       const profilePicUrl = user.profile_picture
-        ? `http://localhost/cinema-server${user.profile_picture}`
-        : "http://localhost/cinema-server/uploads/profile_pictures/default-avatar.jpeg";
+        ? `${baseURL}${user.profile_picture}`
+        : `${baseURL}/uploads/profile_pictures/default-avatar.jpeg`;
 
       authButtonsEl.innerHTML = `
         <a href="/pages/profile.html" class="profile-link">
@@ -42,17 +40,16 @@ function showGuestButtons() {
 
 async function loadNowShowing() {
   try {
-    const res = await axios.get(
-      "http://localhost/cinema-server/controllers/get_movies.php"
-    );
-    const movies = res.data.movies.slice(0, 4); // Show only 4
+    const res = await api.get("/get_movies");
+
+    const movies = res.data.movies.slice(0, 4);
 
     const grid = document.getElementById("now-showing-movies");
     grid.innerHTML = movies
       .map(
         movie => `
       <a href="/pages/movie.html?id=${movie.id}" class="movie-card">
-        <img src="http://localhost/cinema-server${movie.poster}" alt="${movie.title}" />
+        <img src="${baseURL}${movie.poster}" alt="${movie.title}" />
         <h4>${movie.title}</h4>
       </a>
     `

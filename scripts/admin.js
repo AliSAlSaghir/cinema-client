@@ -1,3 +1,18 @@
+async function checkAdmin() {
+  const userId = localStorage.getItem("user_id");
+  try {
+    const res = await api.get(`/get_users?id=${userId}`);
+    const user = res.data.user;
+    if (!user.is_admin) {
+      window.location.href = "/";
+    }
+  } catch (err) {
+    console.error("Failed to load the user:", err);
+  }
+}
+
+checkAdmin();
+
 document
   .getElementById("auditorium-form")
   .addEventListener("submit", async e => {
@@ -14,7 +29,7 @@ document
     };
 
     try {
-      const res = await api.post("/create_auditorium.php", payload);
+      const res = await api.post("/create_auditorium", payload);
       alert("Auditorium created successfully!");
     } catch (err) {
       console.error(err);
@@ -22,7 +37,6 @@ document
     }
   });
 
-// Coupon Form Handler
 document.getElementById("coupon-form").addEventListener("submit", async e => {
   e.preventDefault();
 
@@ -40,7 +54,7 @@ document.getElementById("coupon-form").addEventListener("submit", async e => {
   };
 
   try {
-    const res = await api.post("/create_coupon.php", payload);
+    const res = await api.post("/create_coupon", payload);
     alert("Coupon created successfully!");
   } catch (err) {
     alert(err.response?.data?.error || "Failed to create coupon");
@@ -60,7 +74,7 @@ document.getElementById("genre-form").addEventListener("submit", async e => {
 
   try {
     console.log(payload);
-    const res = await api.post("/create_genre.php", payload);
+    const res = await api.post("/create_genre", payload);
     alert("Genre created successfully!");
   } catch (err) {
     alert(err.response?.data?.error || "Failed to create genre");
@@ -69,7 +83,7 @@ document.getElementById("genre-form").addEventListener("submit", async e => {
 
 async function loadGenres() {
   try {
-    const res = await api.get("/get_genres.php"); // or whatever your endpoint is
+    const res = await api.get("/get_genres");
     const genres = res.data.genres || [];
     const select = document.getElementById("movie-genres");
 
@@ -101,7 +115,7 @@ document.getElementById("movie-form").addEventListener("submit", async e => {
   formData.set("genre_ids", JSON.stringify(selectedGenres));
 
   try {
-    const res = await api.post("/create_movie.php", formData, {
+    const res = await api.post("/create_movie", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     alert("Movie created successfully!");
@@ -115,7 +129,7 @@ loadGenres();
 
 async function loadMoviesForShowtime() {
   try {
-    const res = await api.get("/get_movies.php");
+    const res = await api.get("/get_movies");
     const movies = res.data.movies || [];
     const select = document.getElementById("showtime-movie");
 
@@ -132,7 +146,7 @@ async function loadMoviesForShowtime() {
 
 async function loadAuditoriumsForShowtime() {
   try {
-    const res = await api.get("/get_auditoriums.php");
+    const res = await api.get("/get_auditoriums");
     const auditoriums = res.data.auditoriums || [];
     const select = document.getElementById("showtime-auditorium");
 
@@ -162,7 +176,7 @@ document.getElementById("showtime-form").addEventListener("submit", async e => {
   };
 
   try {
-    const res = await api.post("/create_showtime.php", data);
+    const res = await api.post("/create_showtime", data);
     alert("Showtime created successfully!");
     e.target.reset();
   } catch (err) {
@@ -180,7 +194,7 @@ document.getElementById("snack-form").addEventListener("submit", async e => {
   formData.append("user_id", userId);
 
   try {
-    const res = await api.post("/create_snack.php", formData, {
+    const res = await api.post("/create_snack", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     alert("Snack created successfully!");

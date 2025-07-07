@@ -4,7 +4,7 @@ async function loadUserData() {
   if (!userId) return;
 
   try {
-    const res = await api.get(`/get_user.php?id=${userId}`);
+    const res = await api.get(`/get_users?id=${userId}`);
     const user = res.data.user;
 
     const form = document.getElementById("profile-form");
@@ -19,7 +19,7 @@ async function loadUserData() {
     if (user.profile_picture) {
       document.getElementById(
         "profile-preview"
-      ).src = `http://localhost/cinema-server${user.profile_picture}`;
+      ).src = `${baseURL}${user.profile_picture}`;
     }
   } catch (err) {
     console.error("Failed to load user:", err);
@@ -34,15 +34,11 @@ document.getElementById("profile-form").addEventListener("submit", async e => {
   formData.append("id", userId);
 
   try {
-    const res = await axios.post(
-      "http://localhost/cinema-server/controllers/update_user.php",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const res = await api.post("/update_user", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
     alert("Profile updated successfully!");
     location.reload();
