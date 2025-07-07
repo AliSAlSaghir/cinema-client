@@ -9,7 +9,7 @@ async function loadMovie() {
   }
 
   try {
-    const res = await api.get(`/get_movies.php?id=${movieId}`);
+    const res = await api.get(`/get_movies?id=${movieId}`);
     const movie = res.data.movie;
 
     const genres = movie.genres.map(g => g.name).join(", ");
@@ -29,7 +29,7 @@ async function loadMovie() {
 
     container.innerHTML = `
       <div class="movie-detail">
-        <img src="http://localhost/cinema-server${movie.poster}" class="movie-detail-poster" />
+        <img src="${baseURL}${movie.poster}" class="movie-detail-poster" />
         <div class="movie-detail-info">
           <h2>${movie.title}</h2>
           <p class="movie-genre">${genres}</p>

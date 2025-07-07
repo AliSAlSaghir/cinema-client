@@ -15,26 +15,24 @@ let baseSeatPrice = 0;
 async function loadSeats() {
   try {
     const { data: showtimeData } = await api.get(
-      `/get_showtimes.php?id=${showtimeId}`
+      `/get_showtimes?id=${showtimeId}`
     );
     const showtime = showtimeData.showtimes[0];
     const auditoriumId = showtime.auditorium_id;
 
     const { data: seatData } = await api.get(
-      `/get_seats.php?auditorium_id=${auditoriumId}`
+      `/get_seats?auditorium_id=${auditoriumId}`
     );
     const seats = seatData.seats;
     baseSeatPrice = seatData.base_price || 10;
 
     seatMapEl.innerHTML = "";
 
-    // Optional: Add screen label
     const screen = document.createElement("div");
     screen.className = "screen";
     screen.textContent = "SCREEN";
     seatMapEl.appendChild(screen);
 
-    // Group seats by row
     const seatRows = {};
     seats.forEach(seat => {
       const row = seat.row_label;
@@ -104,7 +102,7 @@ function refreshSeatSelection() {
 
 async function loadSnacks() {
   try {
-    const { data } = await api.get("/get_snacks.php");
+    const { data } = await api.get("/get_snacks");
     const snacks = data.snacks;
 
     snacksListEl.innerHTML = "";
@@ -114,9 +112,9 @@ async function loadSnacks() {
       wrapper.className = "snack-item";
 
       wrapper.innerHTML = `
-        <img class="snack-image" src="http://localhost/cinema-server${
-          snack.image
-        }" alt="${snack.name}" />
+        <img class="snack-image" src="${baseURL}${snack.image}" alt="${
+        snack.name
+      }" />
         <div class="snack-info">
           <label>${snack.name} ($${snack.price.toFixed(2)})</label>
           <input type="number" min="0" value="0"
@@ -184,7 +182,7 @@ document
       };
 
       console.log(payload);
-      const res = await api.post("/create_booking.php", payload);
+      const res = await api.post("/create_booking", payload);
       alert("Booking successful!");
       window.location.href = "/index.html";
     } catch (err) {

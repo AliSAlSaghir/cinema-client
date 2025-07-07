@@ -9,8 +9,8 @@ async function loadMovies() {
 
   try {
     const endpoint = titleFilter
-      ? `/get_movies.php?title=${encodeURIComponent(titleFilter)}`
-      : `/get_movies.php`;
+      ? `/get_movies?title=${encodeURIComponent(titleFilter)}`
+      : `/get_movies`;
 
     const res = await api.get(endpoint);
     const movies = res.data.movies;
@@ -28,7 +28,7 @@ async function loadMovies() {
       movieEl.className = "movie-card";
       movieEl.href = `/pages/movie.html?id=${movie.id}`;
       movieEl.innerHTML = `
-        <img src="http://localhost/cinema-server${movie.poster}" alt="${movie.title}" class="movie-poster" />
+        <img src="${baseURL}${movie.poster}" alt="${movie.title}" class="movie-poster" />
         <div class="movie-info">
           <div class="movie-title">${movie.title}</div>
           <div class="movie-genres">${genres}</div>
@@ -48,14 +48,13 @@ async function loadUserProfile() {
   if (!userId) return;
 
   try {
-    const res = await api.get(`/get_user.php?id=${userId}`);
+    const res = await api.get(`/get_users?id=${userId}`);
     const user = res.data.user;
-    console.log(res);
 
-    const avatarEl = document.querySelector("#profile-avatar img");
+    const avatarEl = document.getElementById("avatar-img");
 
     if (user.profile_picture) {
-      avatarEl.src = `http://localhost/cinema-server/${user.profile_picture}`;
+      avatarEl.src = `${baseURL}/${user.profile_picture}`;
     }
   } catch (err) {
     console.error("Failed to load user profile picture:", err);

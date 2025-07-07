@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", async e => {
   const password = document.getElementById("password").value;
 
   try {
-    const res = await api.post("/login.php", { identifier, password });
+    const res = await api.post("/login", { identifier, password });
 
     const userId = res.data.user?.id;
 

@@ -12,7 +12,7 @@ document.getElementById("register-form").addEventListener("submit", async e => {
   }
 
   try {
-    const res = await api.post("/register.php", {
+    const res = await api.post("/register", {
       name,
       email: email || null,
       phone_number: phone || null,
